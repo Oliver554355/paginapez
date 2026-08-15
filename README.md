@@ -1,52 +1,44 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SIMULACIÓN DE PRUEBA - Página de Login (Demo)</title>
-<style>
-  body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;background:#f4f6f8;display:flex;align-items:center;justify-content:center;height:100vh}
-  .card{background:white;padding:24px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);width:360px}
-  h1{font-size:18px;margin:0 0 12px}
-  .badge{display:inline-block;background:#ffcc00;color:#000;padding:6px 10px;border-radius:6px;font-weight:700;margin-bottom:12px}
-  label{display:block;font-size:13px;margin-top:10px}
-  input{width:100%;padding:10px;border-radius:6px;border:1px solid #dfe6ee;margin-top:6px}
-  button{margin-top:14px;width:100%;padding:10px;border-radius:8px;border:0;background:#0066cc;color:#fff;font-weight:600}
-  .result{margin-top:12px;padding:10px;border-radius:8px;background:#f0f7ff;color:#003366;display:none}
-  .help{font-size:13px;color:#556; margin-top:8px}
-  .warning{color:#990000;font-weight:700;margin-top:8px}
-</style>
-</head>
-<body>
-  <div class="card" role="main">
-    <span class="badge">SIMULACIÓN / PRUEBA</span>
-    <h1>Inicio de sesión — DEMO</h1>
-    <p class="help">Esta página es una demostración. No introduzcas contraseñas reales. Al enviar se mostrará información educativa.</p>
+# Ciberseguridad para curiosos: cómo funcionan los ataques y cómo defenderse
 
-    <form id="demoForm" onsubmit="handleSubmit(event)">
-      <label for="user">Usuario o correo</label>
-      <input id="user" name="user" type="text" placeholder="tucorreo@ejemplo.com" autocomplete="off" required />
-      <label for="pass">Contraseña</label>
-      <input id="pass" name="pass" type="password" placeholder="••••••••" autocomplete="off" required />
-      <button type="submit">Iniciar sesión</button>
-    </form>
+Este repositorio es un proyecto **educativo y defensivo**. El objetivo es entender,
+a nivel conceptual y con demos seguras que corren en local, cómo funcionan las
+técnicas de ataque más comunes, cómo las controlan quienes las usan, y sobre
+todo **cómo prevenirlas y detectarlas**.
 
-    <div id="result" class="result" role="status" aria-live="polite"></div>
+No es una colección de herramientas de ataque listas para usar contra terceros.
+Ningún demo aquí se conecta a sistemas ajenos ni exfiltra datos: todo corre
+contra `localhost` o contra datos de ejemplo incluidos en el propio repo.
 
-    <p class="warning">Nota: esta es una <strong>simulación educativa</strong>. No se ha enviado ni guardado tu contraseña en ningún servidor.</p>
-    <p class="help">Consejos rápidos para detectar phishing: verifica el dominio en la barra de direcciones, busca HTTPS y certificado válido, desconfía de mensajes con urgencia o enlaces acortados.</p>
-  </div>
+> ⚠️ Usa este contenido solo en sistemas propios, entornos de laboratorio o con
+> autorización explícita (por ejemplo, un pentest contratado o un CTF). Atacar
+> sistemas de terceros sin permiso es ilegal en la mayoría de países.
 
-<script>
-  function handleSubmit(e){
-    e.preventDefault();
-    const u = document.getElementById('user').value || '[sin usuario]';
-    const r = document.getElementById('result');
-    r.style.display = 'block';
-    r.innerHTML = `<strong>SIMULACIÓN COMPLETADA</strong><br>Has introducido: <em>${escapeHtml(u)}</em>.<br><br>Esto es solo una prueba. Recuerda: nunca introducir contraseñas reales en formularios sospechosos.`;
-    document.getElementById('demoForm').reset();
-  }
-  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-</script>
-</body>
-</html>
+## Estructura
+
+- **`docs/`** — explicación de cada familia de ataques: qué es, cómo funciona
+  técnicamente, cómo lo "controla" un atacante (C2, persistencia, etc.) y cómo
+  detectarlo/prevenirlo desde el lado defensivo.
+- **`demos/`** — ejemplos prácticos, pequeños y seguros, para ver los conceptos
+  en acción sin poner en riesgo a nadie.
+
+## Índice de documentación
+
+1. [Phishing e ingeniería social](docs/01-phishing.md)
+2. [Malware: virus, gusanos, troyanos, ransomware](docs/02-malware.md)
+3. [Ataques de red: escaneo, MITM, DDoS](docs/03-network-attacks.md)
+4. [Ataques a contraseñas](docs/04-password-attacks.md)
+5. [Ataques web: XSS, SQLi, CSRF](docs/05-web-attacks.md)
+6. [Ingeniería social en profundidad](docs/06-social-engineering.md)
+7. [Command & Control (C2) y persistencia](docs/07-command-and-control.md)
+8. [Defensa en profundidad: guía general de prevención](docs/08-defensas-generales.md)
+
+## Demos incluidas
+
+| Demo | Qué enseña | Cómo correrla |
+|---|---|---|
+| [`demos/phishing-awareness/`](demos/phishing-awareness/) | Cómo luce un login falso y qué señales lo delatan | Abrir `index.html` en el navegador |
+| [`demos/password-security/`](demos/password-security/) | Por qué el hashing+salt importa, y qué tan rápido cae una contraseña débil | `python3 demos/password-security/demo.py` |
+| [`demos/web-vulnerabilities/`](demos/web-vulnerabilities/) | SQL injection real (contra una BD SQLite local) vs. consultas parametrizadas | `python3 demos/web-vulnerabilities/sqli_demo.py` |
+| [`demos/network-recon/`](demos/network-recon/) | Cómo funciona un escaneo de puertos y qué ve un atacante | `python3 demos/network-recon/port_scanner.py` (por defecto solo escanea `localhost`) |
+
+Cada demo tiene su propio `README`/comentarios explicando qué hace y qué mirar.

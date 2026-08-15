@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SIMULACIÓN DE PRUEBA - Página de Login (Demo)</title>
+<style>
+  body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;background:#f4f6f8;display:flex;align-items:center;justify-content:center;min-height:100vh}
+  .card{background:white;padding:24px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);width:360px}
+  h1{font-size:18px;margin:0 0 12px}
+  .badge{display:inline-block;background:#ffcc00;color:#000;padding:6px 10px;border-radius:6px;font-weight:700;margin-bottom:12px}
+  label{display:block;font-size:13px;margin-top:10px}
+  input{width:100%;padding:10px;border-radius:6px;border:1px solid #dfe6ee;margin-top:6px;box-sizing:border-box}
+  button{margin-top:14px;width:100%;padding:10px;border-radius:8px;border:0;background:#0066cc;color:#fff;font-weight:600;cursor:pointer}
+  .result{margin-top:12px;padding:10px;border-radius:8px;background:#f0f7ff;color:#003366;display:none}
+  .flags{margin-top:12px;padding:10px;border-radius:8px;background:#fff8e1;color:#5c4600;display:none}
+  .flags ul{margin:6px 0 0;padding-left:18px}
+  .help{font-size:13px;color:#556; margin-top:8px}
+  .warning{color:#990000;font-weight:700;margin-top:8px}
+</style>
+</head>
+<body>
+  <div class="card" role="main">
+    <span class="badge">SIMULACIÓN / PRUEBA</span>
+    <h1>Inicio de sesión — DEMO</h1>
+    <p class="help">Esta página es una demostración educativa de cómo luce un
+    login de phishing. No introduzcas contraseñas reales. Todo ocurre en tu
+    navegador: no hay backend, no se envía nada a ningún servidor.</p>
+
+    <form id="demoForm" onsubmit="handleSubmit(event)">
+      <label for="user">Usuario o correo</label>
+      <input id="user" name="user" type="text" placeholder="tucorreo@ejemplo.com" autocomplete="off" required />
+      <label for="pass">Contraseña</label>
+      <input id="pass" name="pass" type="password" placeholder="••••••••" autocomplete="off" required />
+      <button type="submit">Iniciar sesión</button>
+    </form>
+
+    <div id="result" class="result" role="status" aria-live="polite"></div>
+    <div id="flags" class="flags"></div>
+
+    <p class="warning">Nota: esta es una <strong>simulación educativa</strong>.
+    No se ha enviado ni guardado tu contraseña en ningún servidor — mira el
+    código fuente de esta página, no hay ninguna petición de red.</p>
+    <p class="help">Señales típicas de phishing (ver <a href="../../docs/01-phishing.md">docs/01-phishing.md</a>):
+    dominio distinto al real, urgencia artificial, gestor de contraseñas que
+    no autocompleta, y peticiones de datos que el servicio real nunca pide
+    por ese canal.</p>
+  </div>
+
+<script>
+  const redFlags = [
+    "El dominio real de tu banco/servicio nunca es un archivo local ni un dominio 'parecido' — compruébalo siempre en la barra de direcciones.",
+    "Un gestor de contraseñas legítimo NO habría autocompletado aquí, porque este no es el dominio real.",
+    "Los servicios reales casi nunca piden reenviar la contraseña por email/SMS ni la muestran de vuelta como hace este demo.",
+    "La urgencia ('inicia sesión ahora o perderás acceso') es una técnica de presión clásica."
+  ];
+
+  function handleSubmit(e){
+    e.preventDefault();
+    const u = document.getElementById('user').value || '[sin usuario]';
+    const r = document.getElementById('result');
+    r.style.display = 'block';
+    r.innerHTML = `<strong>SIMULACIÓN COMPLETADA</strong><br>Has introducido: <em>${escapeHtml(u)}</em>.<br><br>Esto es solo una prueba local. Recuerda: nunca introduzcas contraseñas reales en formularios sospechosos.`;
+
+    const f = document.getElementById('flags');
+    f.style.display = 'block';
+    f.innerHTML = '<strong>Señales que deberías haber notado:</strong><ul>' +
+      redFlags.map(x => `<li>${x}</li>`).join('') + '</ul>';
+
+    document.getElementById('demoForm').reset();
+  }
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+</script>
+</body>
+</html>
