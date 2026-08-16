@@ -33,6 +33,7 @@ contra `localhost` o contra datos de ejemplo incluidos en el propio repo.
 8. [Defensa en profundidad: guía general de prevención](docs/08-defensas-generales.md)
 9. [Instalar Kali Linux en el disco (laptop dedicado)](docs/09-instalar-kali.md)
 10. [Anti-forense: cómo intentan no dejar rastro (y cómo se detecta igual)](docs/10-anti-forense-y-deteccion.md)
+11. [Ataques a redes WiFi](docs/11-ataques-wifi.md)
 
 ## Demos incluidas
 
