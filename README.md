@@ -40,6 +40,7 @@ contra `localhost` o contra datos de ejemplo incluidos en el propio repo.
 15. [Más vectores de ataque web](docs/15-mas-vectores-web.md)
 16. [Cómo se saltan la verificación en dos pasos (2FA) y cómo evitarlo](docs/16-bypass-2fa.md)
 17. [Ataques a Active Directory](docs/17-active-directory.md)
+18. [Más allá de rockyou.txt: cómo generan wordlists reales los atacantes](docs/18-mas-alla-de-rockyou.md)
 
 ## Demos incluidas
 
