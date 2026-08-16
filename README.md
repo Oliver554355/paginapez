@@ -31,6 +31,7 @@ contra `localhost` o contra datos de ejemplo incluidos en el propio repo.
 6. [Ingeniería social en profundidad](docs/06-social-engineering.md)
 7. [Command & Control (C2) y persistencia](docs/07-command-and-control.md)
 8. [Defensa en profundidad: guía general de prevención](docs/08-defensas-generales.md)
+9. [Instalar Kali Linux en el disco (laptop dedicado)](docs/09-instalar-kali.md)
 
 ## Demos incluidas
 
