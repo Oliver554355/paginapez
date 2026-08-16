@@ -36,6 +36,7 @@ contra `localhost` o contra datos de ejemplo incluidos en el propio repo.
 11. [Ataques a redes WiFi](docs/11-ataques-wifi.md)
 12. [Técnicas y herramientas: el panorama general](docs/12-herramientas-y-tecnicas.md)
 13. [Metodología para máquinas de HackTheBox](docs/13-metodologia-htb.md)
+14. [Cheat sheet: fuzzing web con ffuf y gobuster](docs/14-cheatsheet-web-fuzzing.md)
 
 ## Demos incluidas
 
