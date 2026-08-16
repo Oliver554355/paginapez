@@ -39,6 +39,7 @@ contra `localhost` o contra datos de ejemplo incluidos en el propio repo.
 | [`demos/phishing-awareness/`](demos/phishing-awareness/) | Cómo luce un login falso y qué señales lo delatan | Abrir `index.html` en el navegador |
 | [`demos/password-security/`](demos/password-security/) | Por qué el hashing+salt importa, y qué tan rápido cae una contraseña débil | `python3 demos/password-security/demo.py` |
 | [`demos/web-vulnerabilities/`](demos/web-vulnerabilities/) | SQL injection real (contra una BD SQLite local) vs. consultas parametrizadas | `python3 demos/web-vulnerabilities/sqli_demo.py` |
+| [`demos/web-vulnerabilities/webapp/`](demos/web-vulnerabilities/webapp/) | XSS almacenado e IDOR reales en el navegador, vulnerable vs. corregido | `pip install flask && python3 demos/web-vulnerabilities/webapp/app.py` → abrir `http://127.0.0.1:5000/` |
 | [`demos/network-recon/`](demos/network-recon/) | Cómo funciona un escaneo de puertos y qué ve un atacante | `python3 demos/network-recon/port_scanner.py` (por defecto solo escanea `localhost`) |
 
 Cada demo tiene su propio `README`/comentarios explicando qué hace y qué mirar.
