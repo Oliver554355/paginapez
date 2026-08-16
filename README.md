@@ -35,6 +35,7 @@ contra `localhost` o contra datos de ejemplo incluidos en el propio repo.
 10. [Anti-forense: cómo intentan no dejar rastro (y cómo se detecta igual)](docs/10-anti-forense-y-deteccion.md)
 11. [Ataques a redes WiFi](docs/11-ataques-wifi.md)
 12. [Técnicas y herramientas: el panorama general](docs/12-herramientas-y-tecnicas.md)
+13. [Metodología para máquinas de HackTheBox](docs/13-metodologia-htb.md)
 
 ## Demos incluidas
 
