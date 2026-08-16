@@ -7,6 +7,37 @@ genéricas de práctica. Pero un ataque dirigido de verdad casi nunca se
 queda ahí — usa wordlists construidas específicamente para el objetivo.
 Complementa [`docs/04-password-attacks.md`](04-password-attacks.md).
 
+## 0. Dos cosas distintas: wordlist vs. "combo list"
+
+Antes de seguir, una distinción que se confunde fácil:
+
+- **Wordlist** (como `rockyou.txt`): solo **contraseñas sueltas**, sin
+  usuario asociado. Sirve para **adivinar** — se prueba cada línea contra
+  un hash hasta que una coincida.
+  ```
+  123456
+  password
+  iloveyou
+  ```
+- **Combo list** (como las compilaciones COMB/"Collection #1-5"): pares
+  **usuario:contraseña ya emparejados**, sacados de brechas reales.
+  ```
+  juan.perez@gmail.com:Fút8olR3al!
+  maria99@hotmail.com:Toluca2019
+  ```
+  Con esto el atacante **no adivina nada** — ya sabe que
+  `juan.perez@gmail.com` usó exactamente `Fút8olR3al!` en algún sitio
+  filtrado (digamos, LinkedIn en 2012). La apuesta es: "¿reutilizó esa misma
+  contraseña en Gmail, en su banco, en Instagram?", y prueba ese par exacto
+  directamente contra otros servicios. Eso es **credential stuffing**: no es
+  fuerza bruta ni diccionario, es reutilizar credenciales ya confirmadas
+  como reales en otro sitio.
+
+Por eso combinar muchas brechas es más peligroso que tener solo rockyou:
+mientras más brechas combines, más probable que tengas **el par exacto de
+una cuenta específica**, en vez de tener que adivinar una contraseña
+genérica.
+
 ## 1. Wordlists generadas desde el propio objetivo (OSINT)
 
 - **CeWL**: rastrea el sitio web de la empresa objetivo y extrae todas las
@@ -97,6 +128,40 @@ bloqueos), usar las 14 millones de rockyou sería absurdo — se usan listas
 muy cortas y curadas de las contraseñas realmente más comunes en el
 contexto (`Password123!`, `Bienvenido1!`, `<NombreEmpresa>2024!`),
 maximizando probabilidad de acierto con el mínimo de intentos por usuario.
+
+## 7. Otros diccionarios más allá de rockyou.txt
+
+`rockyou.txt` es una sola brecha de 2009 — el punto de partida, no el
+techo. Otros wordlists reales, de más completos/actualizados a más
+específicos:
+
+**Ya en Kali** (`/usr/share/wordlists/`):
+- `rockyou.txt` — el que ya conoces.
+- `fasttrack.txt` — más corto, contraseñas muy comunes, útil para una
+  primera pasada rápida.
+- **SecLists** (`sudo apt install seclists`, queda en
+  `/usr/share/seclists/`) — la colección de referencia de la industria,
+  mucho más completa que solo rockyou:
+  - `Passwords/darkweb2017-top10000.txt` — top 10,000 contraseñas más
+    comunes vistas en brechas.
+  - `Passwords/xato-net-10-million-passwords*.txt` — varios tamaños (1k,
+    10k, 100k, 1M, 10M), para escalar según cuánto tiempo tengas.
+  - `Passwords/2020-200_most_used_passwords.txt` — actualizado, no de 2009.
+  - `Usernames/` — para armar los pares usuario+contraseña que necesitas en
+    credential stuffing.
+
+**Fuera de Kali, descargables**:
+- **Pwned Passwords** (Troy Hunt / Have I Been Pwned) — más de 800 millones
+  de contraseñas únicas reales, ordenadas por cuántas veces aparecieron
+  filtradas. Hoy es más útil que rockyou, por ser mucho más grande y
+  actualizado.
+- **Weakpass.com** — agrega y combina docenas de wordlists y brechas en
+  listas descargables de varios GB.
+- **CrackStation's wordlist** (~1.5GB) — combina palabras de diccionario
+  reales con contraseñas filtradas.
+- **Probable-Wordlists** (GitHub) — ordenadas por frecuencia real de uso en
+  vez de alfabéticamente, para maximizar aciertos por intento en vez de
+  agotar el diccionario completo.
 
 ## Por qué esto importa para la defensa
 
