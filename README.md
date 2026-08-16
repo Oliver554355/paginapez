@@ -39,6 +39,7 @@ contra `localhost` o contra datos de ejemplo incluidos en el propio repo.
 14. [Cheat sheet: fuzzing web con ffuf y gobuster](docs/14-cheatsheet-web-fuzzing.md)
 15. [Más vectores de ataque web](docs/15-mas-vectores-web.md)
 16. [Cómo se saltan la verificación en dos pasos (2FA) y cómo evitarlo](docs/16-bypass-2fa.md)
+17. [Ataques a Active Directory](docs/17-active-directory.md)
 
 ## Demos incluidas
 
